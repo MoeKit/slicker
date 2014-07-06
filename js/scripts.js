@@ -60,6 +60,7 @@ $(document).ready(function() {
 
     $('.center').slick({
         centerMode: true,
+        infinite: true,
         centerPadding: '60px',
         slidesToShow: 3,
         responsive: [{
@@ -138,6 +139,22 @@ $(document).ready(function() {
             $(this).text('Filter Slides');
             filtered = false;
         }
+    });
+    
+    $('.slider-for').slick({
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        arrows: false,
+        fade: true,
+        asNavFor: '.slider-nav'
+    });
+    $('.slider-nav').slick({
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        asNavFor: '.slider-for',
+        dots: true,
+        centerMode: true,
+        focusOnSelect: true
     });
 
     $(window).on('scroll', function() {
