@@ -21,7 +21,9 @@
     'use strict';
     if (typeof define === 'function' && define.amd) {
         define(['jquery'], factory);
-    } else {
+    } else if(typeof module === 'object' && typeof require === 'function'){
+        factory(require('jquery'));
+    }else {
         factory(jQuery);
     }
 
@@ -29,7 +31,7 @@
     'use strict';
     var Slick = window.Slick || {};
 
-    Slick = (function() {
+    module.exports = Slick = (function() {
 
         var instanceUid = 0;
 
