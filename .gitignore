@@ -1,1 +1,4 @@
 .sass-cache
+dist
+_site
+sea-modules
