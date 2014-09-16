@@ -43,6 +43,7 @@
             _.defaults = {
                 accessibility: true,
                 appendArrows: $(element),
+                appendDots: $(element),
                 arrows: true,
                 asNavFor: null,
                 prevArrow: '<button type="button" data-role="none" class="slick-prev">Previous</button>',
@@ -412,7 +413,7 @@
             dotString += '</ul>';
 
             _.$dots = $(dotString).appendTo(
-                _.$slider);
+                _.options.appendDots);
 
             _.$dots.find('li').first().addClass(
                 'slick-active');
@@ -553,9 +554,10 @@
                 break;
 
             case 'index':
-                var index = $(event.target).parent().index() * _.options.slidesToScroll;
+                var index = event.data.index === 0 ? 0 :
+                    event.data.index || $(event.target).parent().index() * _.options.slidesToScroll;
                 _.slideHandler(index);
-                if(asNavFor != null)  asNavFor.slideHandler(index);                break;
+                if(asNavFor != null)  asNavFor.slideHandler(index);
 
             default:
                 return false;
@@ -583,14 +585,14 @@
             _.$slides.unwrap().unwrap();
         }
         _.$slides.removeClass(
-            'slick-slide slick-active slick-visible').removeAttr('style');
+            'slick-slide slick-active slick-visible').css('width', '');
         _.$slider.removeClass('slick-slider');
         _.$slider.removeClass('slick-initialized');
 
         _.$list.off('.slick');
         $(window).off('.slick-' + _.instanceUid);
         $(document).off('.slick-' + _.instanceUid);
-        
+
     };
 
     Slick.prototype.disableTransition = function(slide) {
@@ -1667,7 +1669,7 @@
             _.$nextArrow.remove();
         }
         _.$slides.removeClass(
-            'slick-slide slick-active slick-visible').removeAttr('style');
+            'slick-slide slick-active slick-visible').css('width', '');
 
     };
 
@@ -1739,9 +1741,12 @@
         var _ = this;
         return _.each(function(index, element) {
 
-            var asNavFor = element.slick.options.asNavFor != null ? $(element.slick.options.asNavFor) : null;
-            if(asNavFor != null) asNavFor.slickGoTo(slide);
-            element.slick.slideHandler(slide);
+            element.slick.changeSlide({
+                data: {
+                    message: 'index',
+                    index: slide
+                }
+            });
 
         });
     };
