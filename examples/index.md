@@ -16,6 +16,10 @@
 	.single-item div{
 		background:blue;
 		color:#fff;
+		text-align:center;
+	}
+	.single-item div h3 {
+		text-align:center;
 	}
 </style>
 <div class="slider single-item">
@@ -32,7 +36,9 @@
 seajs.use(['index','jquery'],function(Slicker,$){
     //console.log(Slicker);
     var slicker = new Slicker('.single-item',{
-    	autoplay:true
+    	autoplay:true,
+    	dots: true,
+    	dotsClass: 'slick-dots-wrap'
     });
     console.log(slicker);
     //slicker.autoPlay();

@@ -415,9 +415,9 @@
             i, dotString;
 
         if (_.options.dots === true && _.slideCount > _.options.slidesToShow) {
-            var dotsClass = 'slick-dots '
-            if(_.options.dotsClass){
-                dotsClass += _.options.dotsClass;
+            var dotsClass = 'slick-dots'
+            if(_.options.dotsClass && _.options.dotsClass !== 'slick-dots'){
+                dotsClass = dotsClass + ' ' + _.options.dotsClass;
             }
             dotString = '<ul class="' + dotsClass + '">';
 
