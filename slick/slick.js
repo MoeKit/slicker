@@ -415,8 +415,11 @@
             i, dotString;
 
         if (_.options.dots === true && _.slideCount > _.options.slidesToShow) {
-
-            dotString = '<ul class="' + _.options.dotsClass + '">';
+            var dotsClass = 'slick-dots '
+            if(_.options.dotsClass){
+                dotsClass += _.options.dotsClass;
+            }
+            dotString = '<ul class="' + dotsClass + '">';
 
             for (i = 0; i <= _.getDotCount(); i += 1) {
                 dotString += '<li>' + _.options.customPaging.call(this, _, i) + '</li>';
