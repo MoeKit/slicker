@@ -22,6 +22,7 @@
   },
   "spm": {
     "main": "index.js",
+    "output": ["slick/slick.css"],
     "dependencies": {
       "jquery": "1.8.3"
     },

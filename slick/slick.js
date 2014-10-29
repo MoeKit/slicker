@@ -1880,6 +1880,8 @@
         return _.get(0).slick.getCurrent();
     };
 
+    // already has getCurrent function
+
     $.fn.slickFilter = function(filter) {
         var _ = this;
         return _.each(function(index, element) {
@@ -1889,6 +1891,7 @@
         });
     };
 
+    // already has filterSlides function
     $.fn.slickGoTo = function(slide) {
         var _ = this;
         return _.each(function(index, element) {
@@ -1900,6 +1903,15 @@
                 }
             });
 
+        });
+    };
+
+    Slick.prototype.goto = function(slide) {
+        this.changeSlide({
+            data: {
+                message: 'index',
+                index: parseInt(slide)
+            }
         });
     };
 
@@ -1916,6 +1928,14 @@
         });
     };
 
+    Slick.prototype.next = function(){
+        this.changeSlide({
+                data: {
+                    message: 'next'
+                }
+            });
+    };
+
     $.fn.slickPause = function() {
         var _ = this;
         return _.each(function(index, element) {
@@ -1926,6 +1946,11 @@
         });
     };
 
+    Slick.prototype.pause = function() {
+        this.autoPlayClear();
+        this.paused = true;
+    };
+
     $.fn.slickPlay = function() {
         var _ = this;
         return _.each(function(index, element) {
@@ -1934,6 +1959,11 @@
             element.slick.autoPlay();
 
         });
+    };
+
+    Slick.prototype.play = function() {
+        this.paused = false;
+        this.autoPlay();
     };
 
     $.fn.slickPrev = function() {
@@ -1949,6 +1979,14 @@
         });
     };
 
+    Slick.prototype.prev = function() {
+        this.changeSlide({
+            data: {
+                message: 'previous'
+            }
+        });
+    };
+
     $.fn.slickRemove = function(slideIndex, removeBefore) {
         var _ = this;
         return _.each(function(index, element) {
@@ -1958,9 +1996,17 @@
         });
     };
 
+    Slick.prototype.remove = function(slideIndex, removeBefore) {
+        this.removeSlide(slideIndex, removeBefore);
+    };
+
     $.fn.slickGetOption = function(option) {
         var _ = this;
         return _.get(0).slick.options[option];
+    };
+
+    Slick.prototype.getOption = function(option) {
+        return this.options[option];
     };
 
     $.fn.slickSetOption = function(option, value, refresh) {
@@ -1977,6 +2023,14 @@
         });
     };
 
+    Slick.prototype.setOption = function(option, value, refresh) {
+        this.options[option] = value;
+        if (refresh === true) {
+            this.unload();
+            this.reinit();
+        }
+    };
+
     $.fn.slickUnfilter = function() {
         var _ = this;
         return _.each(function(index, element) {
@@ -1985,6 +2039,8 @@
 
         });
     };
+
+   // Slick already has unfilterSlides() function
 
     $.fn.unslick = function() {
         var _ = this;
@@ -1996,6 +2052,8 @@
 
         });
     };
+
+    // Slick already has destroy() function
 
     $.fn.getSlick = function() {
         var s = null;
