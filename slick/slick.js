@@ -878,6 +878,19 @@
 
     };
 
+    Slick.prototype.bindDataAction = function() {
+        var _ = this;
+        var $prev = _.$slider.find('[data-action="prev"]'),
+            $next = _.$slider.find('[data-action="next"]');
+        console.log($prev,$next,this.prev,this.next);
+        $prev.on('click.slick',function(){
+            _.prev();
+        });
+        $next.on('click.slick',function(){
+            _.next();
+        });
+    };
+
     Slick.prototype.initializeEvents = function() {
 
         var _ = this;
@@ -941,6 +954,7 @@
         $(window).on('load.slick.slick-' + _.instanceUid, _.setPosition);
         $(document).on('ready.slick.slick-' + _.instanceUid, _.setPosition);
 
+        _.bindDataAction();
     };
 
     Slick.prototype.initUI = function() {
