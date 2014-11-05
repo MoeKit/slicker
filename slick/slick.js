@@ -6,7 +6,7 @@
 |___/_|_|\___|_|\_(_)/ |___/
                    |__/
 
- Version: 1.3.13
+ Version: 1.3.14
   Author: Ken Wheeler
  Website: http://kenwheeler.github.io
     Docs: http://kenwheeler.github.io/slick
@@ -723,7 +723,21 @@
 
         var _ = this;
 
-        return Math.ceil(_.slideCount  / _.options.slidesToScroll) - 1;
+        var breakPoint = 0;
+        var counter = 0
+        var pagerQty = 0;
+
+        if(_.options.infinite === true) {
+            pagerQty = Math.ceil(_.slideCount / _.options.slidesToScroll);
+        } else {
+            while (breakPoint < _.slideCount){
+                ++pagerQty;
+                breakPoint = counter + _.options.slidesToShow;
+                counter += _.options.slidesToScroll <= _.options.slidesToShow ? _.options.slidesToScroll  : _.options.slidesToShow;
+            }
+        }
+
+        return pagerQty - 1;
 
     };
 
@@ -746,8 +760,8 @@
             }
             if (_.slideCount % _.options.slidesToScroll !== 0) {
                 if (slideIndex + _.options.slidesToScroll > _.slideCount && _.slideCount > _.options.slidesToShow) {
-                    _.slideOffset = ((_.slideCount % _.options.slidesToShow) * _.slideWidth) * -1;
-                    verticalOffset = ((_.slideCount % _.options.slidesToShow) * verticalHeight) * -1;
+                    _.slideOffset = ((_.slideCount % _.options.slidesToScroll) * _.slideWidth) * -1;
+                    verticalOffset = ((_.slideCount % _.options.slidesToScroll) * verticalHeight) * -1;
                 }
             }
         } else {
@@ -793,6 +807,8 @@
                 targetLeft += (_.$list.width() - targetSlide.outerWidth()) / 2;
             }
         }
+
+         // 1680
 
         return targetLeft;
 
@@ -1086,7 +1102,7 @@
         var _ = this,
             imgCount, targetImage;
 
-        imgCount = $('img[data-lazy]').length;
+        imgCount = $('img[data-lazy]', _.$slider).length;
 
         if (imgCount > 0) {
             targetImage = $('img[data-lazy]', _.$slider).first();
@@ -1527,11 +1543,9 @@
         targetLeft = _.getLeft(targetSlide);
         slideLeft = _.getLeft(_.currentSlide);
 
-        unevenOffset = _.options.slidesToScroll === 1 ? 0 : _.options.slidesToShow - (Math.round(_.slideCount / _.options.slidesToScroll));
-
         _.currentLeft = _.swipeLeft === null ? slideLeft : _.swipeLeft;
 
-        if (_.options.infinite === false && _.options.centerMode === false && (index < 0 || index > _.slideCount - _.options.slidesToShow + unevenOffset)) {
+        if (_.options.infinite === false && _.options.centerMode === false && (index < 0 || index > _.getDotCount() * _.options.slidesToScroll)) {
             if(_.options.fade === false) {
                 targetSlide = _.currentSlide;
                 _.animateSlide(slideLeft, function() {
