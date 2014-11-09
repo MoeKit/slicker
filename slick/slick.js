@@ -875,7 +875,9 @@
         var _ = this;
 
         if (_.options.dots === true && _.slideCount > _.options.slidesToShow) {
-            $('li', _.$dots).on('click.slick', {
+            var events = _.options.dotsTriggerEvents || 'click';
+            var NSevents = events.replace(' ','.slick ')+'.slick'
+            $('li', _.$dots).on(NSevents, {
                 message: 'index'
             }, _.changeSlide);
         }
@@ -898,7 +900,6 @@
         var _ = this;
         var $prev = _.$slider.find('[data-action="prev"]'),
             $next = _.$slider.find('[data-action="next"]');
-        console.log($prev,$next,this.prev,this.next);
         $prev.on('click.slick',function(){
             _.prev();
         });

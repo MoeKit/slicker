@@ -126,7 +126,49 @@
 </ul>
 
 
+<h2>京东</h2>
 
+<div  style="width:473px;">
+  <div class="jd-demo-1">            
+    <div>
+        <a href="http://c.nfa.jd.com/adclick?sid=2&amp;cid=601&amp;aid=3626&amp;bid=0&amp;unit=75474&amp;advid=142981&amp;guv=&amp;url=http://sale.jd.com/act/HwqzMjNK6E.html" target="_blank"><img src="http://img14.360buyimg.com/da/jfs/t454/297/271616623/25380/ac5e09c7/545ad109N6ab235a0.jpg" width="473" height="180" alt="" data-img="2"></a>
+    </div>            
+    <div>
+        <a href="http://c.nfa.jd.com/adclick?sid=2&amp;cid=601&amp;aid=3626&amp;bid=0&amp;unit=88171&amp;advid=138176&amp;guv=&amp;url=http://sale.jd.com/act/jkp2YiMHEr.html" target="_blank"><img src="http://img11.360buyimg.com/da/jfs/t538/223/276693997/13006/13af3191/545b3c6fNdc122b74.jpg" width="473" height="180" alt="" data-img="2"></a>
+    </div>            
+    <div>
+        <a href="http://c.nfa.jd.com/adclick?sid=2&amp;cid=601&amp;aid=3626&amp;bid=0&amp;unit=75526&amp;advid=142620&amp;guv=&amp;url=http://pinpaijie.jd.com/act/2oGCRL6DNju1FqJY.html" target="_blank"><img src="http://img10.360buyimg.com/da/jfs/t532/14/274316253/24519/ba4dfd7a/545ace00N86468acf.jpg" width="473" height="180" alt="" data-img="2"></a>
+    </div>            
+    <div>
+        <a href="http://c.nfa.jd.com/adclick?sid=2&amp;cid=601&amp;aid=3626&amp;bid=8001&amp;unit=75475&amp;advid=158419&amp;guv=&amp;url=http://sale.jd.com/act/CTXHZsmnOMtDPNjY.html" target="_blank"><img src="http://img11.360buyimg.com/da/jfs/t622/174/165714761/23659/5aae8c42/54533318N57da1939.jpg" width="473" height="180" alt="" data-img="2"></a>
+    </div>
+</div>  
+</div>
+
+
+
+<style>
+    .jd-demo-1-dots {
+        top:auto;
+        bottom:-5px;
+    }
+    .jd-demo-1-dots li {
+       /*  padding-top:10px;
+       padding-bottom:10px; */
+        width:36px;
+        height:5px;
+        background-color:#999;
+    }
+    .jd-demo-1-dots li button{
+        /* display:none;  */
+        opacity:0;
+        width:36px;
+        height:5px;
+    }
+    .jd-demo-1-dots .slick-active {
+        background-color:#7ABD54;
+    }
+</style>
 
 <script>
 seajs.use(['index','jquery'],function(Slicker,$){
@@ -136,7 +178,8 @@ seajs.use(['index','jquery'],function(Slicker,$){
     	dots: true,
     	dotsClass: 'slick-dots-wrap',
     	fade: false,
-    	vertical: false
+    	vertical: false,
+        dotsTriggerEvents:'click mouseenter'
     });
     console.log(slicker);
     //slicker.autoPlay();
@@ -176,6 +219,18 @@ seajs.use(['index','jquery'],function(Slicker,$){
     	autoplay:true,
     	speed:200
     });
+
+    new Slicker('.jd-demo-1',{
+        autoplay:true,
+        speed:200,
+        dots: true,
+        dotsClass: 'jd-demo-1-dots',
+        dotsTriggerEvents:'click mouseenter',
+        cssEase:'ease-out'
+    });
+
+
+    
 });
 </script>
 ````
