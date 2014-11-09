@@ -72,12 +72,13 @@
                 onSetPosition: null,
                 pauseOnHover: true,
                 pauseOnDotsHover: false,
+                respondTo: 'window',
                 responsive: null,
                 rtl: false,
                 slide: 'div',
                 slidesToShow: 1,
                 slidesToScroll: 1,
-                speed: 300,
+                speed: 500,
                 swipe: true,
                 swipeToSlide: false,
                 touchMove: true,
@@ -124,6 +125,7 @@
             _.cssTransitions = false;
             _.paused = false;
             _.positionProp = null;
+            _.respondTo = null;
             _.shouldClick = true;
             _.$slider = $(element);
             _.$slidesCache = null;
@@ -140,6 +142,7 @@
             responsiveSettings = _.options.responsive || null;
 
             if (responsiveSettings && responsiveSettings.length > -1) {
+                _.respondTo = _.options.respondTo || "window";
                 for (breakpoint in responsiveSettings) {
                     if (responsiveSettings.hasOwnProperty(breakpoint)) {
                         _.breakpoints.push(responsiveSettings[
@@ -468,7 +471,6 @@
 
         if (_.options.centerMode === true) {
             _.options.slidesToScroll = 1;
-            _.options.slidesToShow = 3;
         }
 
         $('img[data-lazy]', _.$slider).not('[src]').addClass('slick-loading');
@@ -496,7 +498,16 @@
     Slick.prototype.checkResponsive = function() {
 
         var _ = this,
-            breakpoint, targetBreakpoint;
+            breakpoint, targetBreakpoint, respondToWidth;
+        var sliderWidth = _.$slider.width();
+        var windowWidth = window.innerWidth || $(window).width();
+        if (_.respondTo === "window") {
+          respondToWidth = windowWidth;
+        } else if (_.respondTo === "slider") {
+          respondToWidth = sliderWidth;
+        } else if (_.respondTo === "min") {
+          respondToWidth = Math.min(windowWidth, sliderWidth);
+        }
 
         if (_.originalSettings.responsive && _.originalSettings
             .responsive.length > -1 && _.originalSettings.responsive !== null) {
@@ -505,10 +516,8 @@
 
             for (breakpoint in _.breakpoints) {
                 if (_.breakpoints.hasOwnProperty(breakpoint)) {
-                    if ($(window).width() < _.breakpoints[
-                        breakpoint]) {
-                        targetBreakpoint = _.breakpoints[
-                            breakpoint];
+                    if (respondToWidth < _.breakpoints[breakpoint]) {
+                        targetBreakpoint = _.breakpoints[breakpoint];
                     }
                 }
             }
