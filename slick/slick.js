@@ -2006,12 +2006,9 @@
         });
     };
 
-<<<<<<< HEAD
+
     // already has filterSlides function
-    $.fn.slickGoTo = function(slide) {
-=======
     $.fn.slickGoTo = function(slide, dontAnimate) {
->>>>>>> a86ec6afca76b5106a1a0a410406aad3a937a6e5
         var _ = this;
         return _.each(function(index, element) {
 
@@ -2025,13 +2022,13 @@
         });
     };
 
-    Slick.prototype.goto = function(slide) {
+    Slick.prototype.goto = function(slide, dontAnimate) {
         this.changeSlide({
             data: {
                 message: 'index',
                 index: parseInt(slide)
             }
-        });
+        }, dontAnimate);
     };
 
     $.fn.slickNext = function() {
@@ -2115,10 +2112,7 @@
         });
     };
 
-<<<<<<< HEAD
-    Slick.prototype.remove = function(slideIndex, removeBefore) {
-        this.removeSlide(slideIndex, removeBefore);
-=======
+
     $.fn.slickRemoveAll = function() {
         var _ = this;
         return _.each(function(index, element) {
@@ -2126,7 +2120,11 @@
             element.slick.removeSlide(null, null, true);
 
         });
->>>>>>> a86ec6afca76b5106a1a0a410406aad3a937a6e5
+    };
+
+
+    Slick.prototype.remove = function(slideIndex, removeBefore) {
+        this.removeSlide(slideIndex, removeBefore);
     };
 
     $.fn.slickGetOption = function(option) {
