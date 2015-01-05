@@ -35,7 +35,17 @@
 
 <span class="next" data-action="next">下一个</span>
 <span class="pre" data-action="prev">上一个</span>
-				</div>
+
+</div>
+
+<div id="demo1">
+<a>第1个</a>
+<a>第2个</a>
+<a>第3个</a>
+<a>第4个</a>
+<a>第5个</a>
+<a>第6个</a>
+</div>
 
 
 <h2>一淘</h2>
@@ -180,6 +190,12 @@ seajs.use(['index','jquery'],function(Slicker,$){
     	fade: false,
     	vertical: false,
         dotsTriggerEvents:'click mouseenter'
+    });
+
+    $('#demo1>a').click(function(){
+        var index = $(this).index();
+        console.log(index);
+        slicker.goto(index);
     });
     console.log(slicker);
     //slicker.autoPlay();

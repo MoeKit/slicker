@@ -22,10 +22,20 @@
   },
   "spm": {
     "main": "index.js",
-    "output": ["slick/slick.css"],
+    "output": [
+      "slick/slick.css",
+      "slick/ajax-loader.gif",
+      "slick/fonts/slick.eot",
+      "slick/fonts/slick.svg",
+      "slick/fonts/slick.ttf",
+      "slick/fonts/slick.woff"
+    ],
     "dependencies": {
       "jquery": "1.8.3"
     },
     "buildArgs": "--ignore jquery"
+  },
+  "dependencies": {
+    "gulp-replace": "^0.5.0"
   }
 }
