@@ -141,7 +141,7 @@
 
 /* Dots */
 .slick-slider {
-  margin-bottom: 30px; }
+  margin-bottom: 15px; }
 
 .slick-dots {
   position: absolute;
@@ -159,6 +159,9 @@
     margin: 0 5px;
     padding: 0;
     cursor: pointer; }
+  .slick-dots li.slick-active {
+   /*  background-color:red; */
+  }
     .slick-dots li button {
       border: 0;
       background: transparent;
@@ -175,7 +178,7 @@
         outline: none; }
         .slick-dots li button:hover:before, .slick-dots li button:focus:before {
           opacity: 1; }
-      .slick-dots li button:before {
+      .slick-dots li button {
         position: absolute;
         top: 0;
         left: 0;
@@ -190,6 +193,17 @@
         opacity: 0.25;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale; }
-    .slick-dots li.slick-active button:before {
+    .slick-dots li.slick-active button {
       color: black;
       opacity: 0.75; }
+
+      .slick-dots-theme-inner {
+        bottom:10px;
+      }
+
+       .slick-dots-theme-inner li button {
+        color:#ccc;
+       }
+       .slick-dots-theme-inner li.slick-active button {
+        color:#fff;
+       }

@@ -54,7 +54,7 @@
                 centerPadding: '50px',
                 cssEase: 'ease',
                 customPaging: function(slider, i) {
-                    return '<button type="button" data-role="none">' + (i + 1) + '</button>';
+                    return '<button type="button" data-role="none">•</button>';
                 },
                 dots: false,
                 dotsClass: 'slick-dots',
@@ -552,7 +552,6 @@
     };
 
     Slick.prototype.changeSlide = function(event, dontAnimate) {
-
         var _ = this,
             $target = $(event.target),
             indexOffset, slideOffset, unevenOffset,navigables, prevNavigable;
@@ -585,6 +584,7 @@
 
                 navigables = _.getNavigableIndexes();
                 prevNavigable = 0;
+
                 if(navigables[index] && navigables[index] === index) {
                     if(index > navigables[navigables.length -1]){
                         index = navigables[navigables.length -1];
@@ -931,7 +931,8 @@
             var events = _.options.dotsTriggerEvents || 'click';
             var NSevents = events.replace(' ','.slick ')+'.slick'
             $('li', _.$dots).on(NSevents, {
-                message: 'index'
+                message: 'index',
+                trigger:'NSevents'
             }, _.changeSlide);
         }
 

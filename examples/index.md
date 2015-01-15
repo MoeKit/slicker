@@ -186,10 +186,10 @@ seajs.use(['index','jquery'],function(Slicker,$){
     var slicker = new Slicker('.single-item',{
     	autoplay:true,
     	dots: true,
-    	dotsClass: 'slick-dots-wrap',
+    	dotsClass: 'slick-dots-wrap slick-dots-theme-inner',
     	fade: false,
     	vertical: false,
-        dotsTriggerEvents:'click mouseenter'
+        dotsTriggerEvents:'click mouseover'
     });
 
     $('#demo1>a').click(function(){
