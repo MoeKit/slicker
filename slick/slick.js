@@ -119,22 +119,20 @@
 
             $.extend(_, _.initials);
 
-            _.activeBreakpoint = null;
-            _.animType = null;
-            _.animProp = null;
+            var nullList = ['activeBreakpoint', 'animType', 'animProp', 'positionProp', 'respondTo', '$slidesCache', 'transformType', 'transitionType', 'windowTimer'];
+            for (var i = 0; i < nullList.length; i++) {
+                _[nullList[i]] = null;
+            }
+
             _.breakpoints = [];
             _.breakpointSettings = [];
             _.cssTransitions = false;
             _.paused = false;
             _.positionProp = null;
-            _.respondTo = null;
             _.shouldClick = true;
             _.$slider = $(element);
-            _.$slidesCache = null;
-            _.transformType = null;
-            _.transitionType = null;
             _.windowWidth = 0;
-            _.windowTimer = null;
+
 
             _.options = $.extend({}, _.defaults, settings);
 
@@ -159,16 +157,13 @@
                 });
             }
 
-            _.autoPlay = $.proxy(_.autoPlay, _);
-            _.autoPlayClear = $.proxy(_.autoPlayClear, _);
-            _.changeSlide = $.proxy(_.changeSlide, _);
-            _.clickHandler = $.proxy(_.clickHandler, _);
-            _.selectHandler = $.proxy(_.selectHandler, _);
-            _.setPosition = $.proxy(_.setPosition, _);
-            _.swipeHandler = $.proxy(_.swipeHandler, _);
-            _.dragHandler = $.proxy(_.dragHandler, _);
-            _.keyHandler = $.proxy(_.keyHandler, _);
-            _.autoPlayIterator = $.proxy(_.autoPlayIterator, _);
+            var proxyList = ['autoPlay', 'autoPlayClear',
+                'changeSlide', 'clickHandler', 'selectHandler', 'setPosition', 'swipeHandler', 'dragHandler', 'keyHandler', 'autoPlayIterator'
+            ];
+
+            for (var i = 0; i < proxyList.length; i++) {
+                _[proxyList[i]] = $.proxy(_[proxyList[i]], _);
+            }
 
             _.instanceUid = instanceUid++;
 
@@ -2037,7 +2032,7 @@
 
 
     // already has filterSlides function
-    
+
 
     Slick.prototype.goto = function(slide, dontAnimate) {
         this.changeSlide({
@@ -2062,7 +2057,7 @@
         });
     };*/
 
-    
+
 
     Slick.prototype.next = function() {
         this.changeSlide({
