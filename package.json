@@ -31,7 +31,8 @@
       "slick/fonts/slick.woff"
     ],
     "dependencies": {
-      "jquery": "1.8.3"
+      "jquery": "1.8.3",
+      "eventor": "0.0.3"
     },
     "buildArgs": "--ignore jquery"
   },
